@@ -47,8 +47,8 @@ ScrollReveal({
 
 ScrollReveal().reveal(".home-content, .heading", { origin: "top" });
 ScrollReveal().reveal(
-  ".home-img, .services-container, .portfolio-box, .contact form",
-  { origin: "button" }
+  ".home-img, .services-container, .portfolio-box, .contact, form, table",
+  { origin: "bottom" }
 );
 ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
@@ -61,3 +61,21 @@ const typed = new Typed(".multiple-text", {
   backDelay: 1000,
   loop: true,
 });
+
+
+// hendle send message 
+const form = document.getElementById('formMessage');
+
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();//agar tidak reload page
+  const nama = document.getElementById('nama').value.trim();
+  const pesan = document.getElementById('pesan').value.trim();
+
+  if (nama === "" && pesan === ""){
+    alert("You must insert your name and message");
+  } else {
+    alert(`Thanks ${nama} Your message has been succesfully, YEEEY!!!!`)
+  }
+
+})

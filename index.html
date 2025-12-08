@@ -18,14 +18,15 @@
   <body>
     <!--header design-->
     <header class="header">
-      <a href="#" class="logo">portfolio</a>
+      <a href="#" class="logo">Curriculum Vitae</a>
       <i class="bx bx-menu" id="menu-icon"></i>
       <nav class="navbar">
         <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
         <a href="#service">Service</a>
+        <a href="#education">Education</a>
         <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
+        <a href="#music-favorite">Music Favorite</a>
       </nav>
     </header>
 
@@ -40,7 +41,7 @@
           enthusiastic about things related to technology, I like working on
           projects for my portfolio. I am an informatics engineering student, I
           am familiar with HTML, CSS. I master the JavaScript and C++
-          programming languages. and I am also familiar with web security.
+          programming languages.
         </p>
         <div class="social-media">
           <a href="https://web.facebook.com/ahmad.zaeladi"
@@ -49,14 +50,15 @@
           <a href="https://www.instagram.com/zaeladi_/"
             ><i class="bx bxl-instagram"></i
           ></a>
-          <a href="#"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://www.tiktok.com/@zaeladi_"
+          <a href="https://www.linkedin.com/in/ahmad-zaeladi-0884951ab/"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://www.tiktok.com/@zaeladi"
             ><i class="bx bxl-tiktok"></i
           ></a>
         </div>
         <a
-          href="file:///C:/Users/WAHANA%2021/OneDrive/Documents/data%20lamaran/Ahmad%20cv%20update.pdf"
+          href="document/CV Ahmad 2024.pdf"
           class="btn"
+          download="CV Ahmad 2024.pdf"
           >Download CV</a
         >
       </div>
@@ -83,10 +85,11 @@
           the world of technology, and I want to become a great software
           engineer.
         </p>
-        <a href="" class="btn">Read More</a>
+        <!-- <a href="" class="btn">Read More</a> -->
       </div>
     </section>
 
+    
     <!--service section design-->
     <section class="service" id="service">
       <h2 class="heading">Our <span>Service</span></h2>
@@ -127,6 +130,28 @@
       </div>
     </section>
 
+    <!-- education design -->
+     <section class="education" id="education">
+      <h1 class="heading">My <span>Education</span></h1>
+      <div class="education-container">
+        <table class="education-table">
+          <tr>
+            <td><h1>MTS Al Mubarok</h1></td>
+            <td><h1>2014 - 2017</h1></td>
+          </tr>
+          <tr>
+            <td><h1>SMK KI Hajar Dewantoro</h1></td>
+            <td><h1>2017 - 2020</h1></td>
+          </tr>
+          <tr>
+            <td><h1>Universitas Pamulang</h1></td>
+            <td><h1>2023 - Present</h1></td>
+          </tr>
+        </table>
+      </div>
+     </section>
+
+
     <!--portfolio section design-->
     <section class="portfolio" id="portfolio">
       <h2 class="heading">Latest <span>Project</span></h2>
@@ -150,7 +175,7 @@
           <div class="portfolio-layer">
             <h4>Dunia Coffee</h4>
             <p>Sebuah kedai yang menjual berbagai macam minuman coffee</p>
-            <a href="https://kedaicoffee-z.vercel.app/"
+            <a href="https://kedaicoffee-six.vercel.app/"
               ><i class="bx bx-link-external"></i
             ></a>
           </div>
@@ -159,32 +184,38 @@
     </section>
 
     <!--contact section design-->
-    <section class="contact" id="contact">
-      <h2 class="heading">Contact <span>Me!</span></h2>
-      <form action="">
-        <div class="input-box">
-          <input type="text" placeholder="Full Name" />
-          <input type="email" name="" value="" placeholder="Email Address" />
-        </div>
-        <div class="input-box">
-          <input type="number" placeholder="Mobile Number" />
-          <input type="text" name="" value="" placeholder="Email Subject" />
-        </div>
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Your Message"
-        ></textarea>
-        <input type="submit" name="" value="Send Message" class="btn" />
-      </form>
+    <section class="music-favorite" id="music-favorite">
+      <h2 class="heading"> My Favorite <span>Music</span></h2>
+      <div class="music">
+        <video src="images/Radiohead - No Surprises.mp4" controls width="100%" ></video>
+        <!-- <h1>Radiohead - No Surprises</h1> -->
+      </div>
+      <div class="audio">
+        <audio controls>
+          <source src="images/audio.m4a" type="audio/mpeg">
+        </audio>
+      </div>
     </section>
+
+    <!-- contact -->
+    <section class="contact">
+      <h1 class="heading">Send <span>Message</span></h1>
+      <div class="container" >
+        <form id="formMessage">
+          <div class="input-box">
+            <input type="text" id="nama" placeholder="Your Name">
+            <textarea id="pesan" placeholder="Your Message"></textarea>
+            
+          </div>  
+          <button type="submit" class="btn" id="btn">Kirim Pesan</button>
+        </form>
+      </div>
+     </section>
 
     <!--footer design-->
     <footer class="footer">
       <div class="footer-text">
-        <p>Copyright &copy; 2023 by Ahmad Zaeladi | All Right Reserved.</p>
+        <p>Copyright &copy; 2025 by Ahmad Zaeladi | All Right Reserved.</p>
       </div>
       <div class="footer-iconTop">
         <a href="#home"><i class="bx bx-up-arrow-circle"></i></a>

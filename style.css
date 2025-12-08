@@ -229,8 +229,43 @@ span {
   margin: 1rem 0 3rem;
 }
 
+.education {
+  background-color: var(--second-bg-color);
+}
+
+.education-container {
+  width: 100%;
+  height: auto;
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.education-container .education-table{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  table-layout:fixed;
+  box-shadow: #fff;
+}
+
+ tr, td {
+  border: #fff solid 1px;
+  height: 100px;
+    border-radius: 1rem;
+    margin: 0.5rem;
+}
+.edutacion-container .education-table tr {
+  width: 100%;
+}
+.edutacion-container .education-table tr td {
+  font-size: 2rem;
+  
+}
+
 .portfolio {
-  background: var(--second-bg-color);
+  background: var(--bg-color);
 }
 
 .portfolio h2 {
@@ -307,7 +342,31 @@ span {
   color: var(--second-bg-color);
 }
 
-.contact h2 {
+.music-favorite {
+  background-color: var(--second-bg-color);
+}
+
+.music-favorite .music {
+
+  display: flex;
+  flex-direction: column; 
+}
+
+.music-favorite .music h1 {
+  text-align: start;
+  margin-top: 2rem;
+}
+
+.music-favorite .audio {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+
+.contact h2, .music-favorite h2 {
   margin-bottom: 3rem;
 }
 
@@ -325,7 +384,7 @@ span {
 }
 
 .contact form .input-box input,
-.contact form textarea {
+.contact form .input-box textarea {
   width: 100%;
   padding: 1.5rem;
   font-size: 1.6rem;
@@ -335,9 +394,9 @@ span {
   margin: 0.7rem 0;
 }
 
-.contact form .input-box input {
+/* .contact form .input-box input {
   width: 49%;
-}
+} */
 
 .contact form textarea {
   resize: 0;
@@ -346,6 +405,20 @@ span {
 .contact form .btn {
   margin-top: 2rem;
   cursor: pointer;
+}
+
+.music-favorite .music {
+ width: 100%;
+ height: auto;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.music-favorite .music video {
+width: 60%;
+height: auto;
+border-radius: 1.5rem;
 }
 
 .footer {
@@ -486,6 +559,14 @@ span {
     font-size: 50%;
   }
 
+  .music-favorite .music {
+    width: 100%;
+  }
+
+  .music-favorite .music video {
+    width: 100%;
+  }
+
   .contact form .input-box input {
     width: 100%;
   }
@@ -498,11 +579,23 @@ span {
   .about-img img {
     width: 90vw;
   }
+  
+  .music-favorite .music {
+    width: 100%;
+  }
+
+  .music-favorite .music video {
+    width: 100%;
+  }
+
   .footer {
     flex-direction: column-reverse;
+    gap: 1rem;
   }
+
   .footer p {
     text-align: center;
     margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 }
