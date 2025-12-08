@@ -72,7 +72,7 @@ form.addEventListener('submit', function (e) {
   const nama = document.getElementById('nama').value.trim();
   const pesan = document.getElementById('pesan').value.trim();
 
-  if (nama === "" && pesan === ""){
+  if (nama === "" || pesan === ""){
     alert("You must insert your name and message");
   } else {
     alert(`Thanks ${nama} Your message has been succesfully, YEEEY!!!!`)
