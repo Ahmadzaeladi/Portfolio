@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass surfaces (dipakai di luar HeroUI Card) */
+  .glass {
+    @apply backdrop-blur-xl bg-white/50 border border-white/60 shadow-xl shadow-sky-950/5;
+  }
+
+  .glass-strong {
+    @apply backdrop-blur-2xl bg-white/70 border border-white/70 shadow-2xl shadow-sky-950/10;
+  }
+
+  .glass-pill {
+    @apply backdrop-blur-md bg-white/60 border border-white/60 shadow-sm rounded-full;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600;
+  }
+
+  .gradient-text-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-indigo-500;
+  }
+
+  /* Grid blueprint halus untuk aksen section */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(2, 132, 199, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(2, 132, 199, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef5fc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bae6fd;
+  border-radius: 9999px;
+  border: 2px solid #eef5fc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
