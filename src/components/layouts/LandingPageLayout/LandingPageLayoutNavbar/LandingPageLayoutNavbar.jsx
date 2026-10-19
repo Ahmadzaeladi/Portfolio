@@ -62,7 +62,7 @@ export default function LandingPageLayoutNavbar() {
             <HeroLink
               href={link.href}
               size="sm"
-              color={isActive(link.href) ? "primary" : "foreground"}
+              color={isActive(link.href) ? "success" : "foreground"}
               className={`px-3 py-2 rounded-lg hover:bg-white/60 hover:text-primary transition-colors ${
                 isActive(link.href) ? "font-semibold" : "font-medium"
               }`}
@@ -80,8 +80,7 @@ export default function LandingPageLayoutNavbar() {
             href="https://wa.me/6281234567890"
             target="_blank"
             onPress={handleMenuNavigate("https://wa.me/6289607237171")}
-            color="primary"
-            variant="shadow"
+            color="success"
             radius="full"
             size="sm"
             className="font-semibold"
@@ -120,7 +119,7 @@ export default function LandingPageLayoutNavbar() {
             href="https://wa.me/6289607237171"
             target="_blank"
             onPress={handleMenuNavigate("https://wa.me/6289607237171")}
-            color="primary"
+            color="success"
             variant="shadow"
             radius="full"
             fullWidth
