@@ -121,27 +121,17 @@ export const educationData = [
     period: "2023 - Present (Expected 2027)",
     location: "Tangerang Selatan, Banten",
     status: "Active Student",
-    highlights: [
-      "Specializing in Software Engineering, Full-Stack Web Architecture, and Distributed Systems.",
-      "Capstone Project: Full-Stack Web Application Frameworks & Responsive Micro-Frontends.",
-      "Active participant in Campus IT Community workshops and peer-programming sessions.",
-      "Certifications: Full-Stack Web Development Mastery, Modern JavaScript & React Ecosystem.",
-    ],
+
     badge: "Higher Education",
   },
   {
     id: "smk",
     institution: "SMK Ki Hajar Dewantoro",
     degree: "Vocational High School Diploma",
-    major: "Technical & Applied Sciences",
+    major: "Online Business and Marketing",
     period: "2017 - 2020",
     location: "Tangerang City, Banten",
     status: "Graduated",
-    highlights: [
-      "Built foundational knowledge in Computer Hardware, Networking, and Basic Algorithmics.",
-      "Served on student technical committee and school technology showcase initiatives.",
-      "Developed early interest in programming languages and software development.",
-    ],
     badge: "Vocational High School",
   },
   {
@@ -152,10 +142,7 @@ export const educationData = [
     period: "2014 - 2017",
     location: "Tangerang City, Banten",
     status: "Graduated",
-    highlights: [
-      "First discovered deep curiosity and passion for software logic and computer science.",
-      "Participated actively in mathematics and scientific extracurricular activities.",
-    ],
+
     badge: "Junior High School",
   },
 ];
@@ -163,16 +150,16 @@ export const educationData = [
 export const experienceData = [
   {
     id: "exp-1",
-    role: "Freelance Full-Stack Web Developer",
-    company: "Self-Employed / Independent Contractor",
+    role: "Academic & Personal Projects",
+    company: "University Coursework & Personal Projects",
     period: "2023 - Present",
-    type: "Freelance & Projects",
+    type: "Campus & Personal Projects",
     description:
-      "Architecting and delivering full-stack web applications, interactive Single Page Applications, and responsive landing platforms using React, Next.js, Node.js, and Tailwind CSS. Implementing modern UI systems, RESTful API integration, and performance optimization.",
+      "Building web development projects through university coursework and personal initiatives. These projects provide practical experience in designing, developing, and improving web applications while continuing to learn.",
     achievements: [
-      "Architected and deployed responsive web apps with 98+ Google Lighthouse performance scores.",
-      "Built modular full-stack component architectures ensuring high speed, security, and clean code maintainability.",
-      "Engineered bespoke glassmorphic UI systems and fluid micro-interactions with Framer Motion.",
+      "Completed web development projects as part of university coursework.",
+      "Created personal projects to practice and expand web development skills.",
+      "Applied classroom learning to practical project work and iterated on the results.",
     ],
   },
   {

@@ -1,183 +1,150 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardBody, Chip, Tabs, Tab } from "@heroui/react";
 import {
-  Card,
-  CardBody,
-  Chip,
-  Tabs,
-  Tab,
-} from '@heroui/react';
-import {
-  GraduationCap,
   Briefcase,
   Calendar,
-  MapPin,
-  Award,
-  BookOpen,
   CheckCircle2,
+  GraduationCap,
   Terminal,
-} from 'lucide-react';
-import { educationData, experienceData } from '@/constants/portfolioData';
-import SectionHeader from '@/components/ui/SectionHeader';
-import useHomeTimeline from './useHomeTimeline';
+} from "lucide-react";
+import { educationData, experienceData } from "@/constants/portfolioData";
+import SectionHeader from "@/components/ui/SectionHeader";
+import useHomeTimeline from "./useHomeTimeline";
 
-function EducationTimeline() {
+function TimelineEntry({ entry, index, kind }) {
+  const isEducation = kind === "education";
+  const isCardLeft = index % 2 === 1;
+  const periodPlacement = isCardLeft
+    ? "sm:col-start-3 sm:text-left"
+    : "sm:col-start-1 sm:text-right";
+
   return (
-    <div className="relative pl-6 sm:pl-10 space-y-8 before:absolute before:left-3 sm:before:left-4 before:top-4 before:bottom-4 before:w-0.5 before:bg-gradient-to-b before:from-sky-400 before:via-blue-300 before:to-indigo-300">
-      {educationData.map((edu, index) => (
-        <motion.div
-          key={edu.id}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="relative group"
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, delay: (index % 3) * 0.08 }}
+      className="relative grid grid-cols-[3rem_minmax(0,1fr)] items-center gap-x-4 sm:grid-cols-[minmax(0,1fr)_5.5rem_minmax(0,1fr)] sm:gap-x-5"
+    >
+      <div
+        className={`col-start-2 row-start-1 sm:row-start-1 ${
+          isCardLeft ? "sm:col-start-1" : "sm:col-start-3"
+        }`}
+      >
+        <Card
+          isBlurred
+          isHoverable
+          shadow="sm"
+          classNames={{
+            base: "bg-white/70 glass rounded-2xl border border-white/70 backdrop-blur-2xl hover:border-sky-200 transition-all duration-300",
+            body: "p-5 sm:p-6",
+          }}
         >
-          <div className="absolute -left-6 sm:-left-10 top-7 -translate-x-1/2 w-7 h-7 rounded-full bg-white border-4 border-primary-500 shadow-md group-hover:scale-125 group-hover:border-primary-600 transition-all duration-200 flex items-center justify-center">
-            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-          </div>
-
-          <Card
-            isBlurred
-            isHoverable
-            shadow="sm"
-            classNames={{
-              base: 'bg-white/60 glass rounded-3xl border border-white/70 backdrop-blur-2xl hover:border-sky-200 transition-all duration-300',
-              body: 'p-6 sm:p-7',
-            }}
-          >
-            <CardBody>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Chip
-                    size="sm"
-                    variant="flat"
-                    color="primary"
-                    className="text-[11px] font-bold uppercase tracking-wider"
-                  >
-                    {edu.badge}
-                  </Chip>
-                  <Chip
-                    size="sm"
-                    variant="flat"
-                    className="text-[11px] font-semibold bg-default-100 text-default-600"
-                  >
-                    {edu.status}
-                  </Chip>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-medium text-default-500">
-                  <Calendar size={14} className="text-sky-500" />
-                  <span>{edu.period}</span>
-                </div>
-              </div>
-
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground">{edu.institution}</h3>
-              <div className="text-sm sm:text-base font-semibold text-primary-600 mt-1">
-                {edu.degree} — <span className="text-default-700">{edu.major}</span>
-              </div>
-
-              <div className="mt-4 flex flex-wrap gap-3 items-center text-xs text-default-600">
-                <span className="flex items-center gap-1.5 font-semibold px-3 py-1 bg-white/80 border border-divider rounded-lg shadow-sm">
-                  <MapPin size={14} className="text-sky-500" />
-                  {edu.location}
-                </span>
-                <span className="flex items-center gap-1.5 px-3 py-1 bg-white/80 border border-divider rounded-lg shadow-sm">
-                  <Award size={14} className="text-amber-500" />
-                  {edu.degree}
-                </span>
-              </div>
-
-              <div className="mt-5 pt-4 border-t border-divider">
-                <div className="text-xs font-bold uppercase tracking-wider text-default-400 mb-3 flex items-center gap-1.5">
-                  <BookOpen size={14} className="text-sky-500" />
-                  <span>Key Milestones & Academic Highlights</span>
-                </div>
-                <ul className="space-y-2">
-                  {edu.highlights.map((highlight, hIdx) => (
-                    <li
-                      key={hIdx}
-                      className="flex items-start gap-2.5 text-xs sm:text-sm text-default-600 leading-relaxed"
-                    >
-                      <CheckCircle2 size={16} className="text-emerald-500 shrink-0 mt-0.5" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </CardBody>
-          </Card>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-function ExperienceTimeline() {
-  return (
-    <div className="relative pl-6 sm:pl-10 space-y-8 before:absolute before:left-3 sm:before:left-4 before:top-4 before:bottom-4 before:w-0.5 before:bg-gradient-to-b before:from-indigo-400 before:via-indigo-300 before:to-purple-300">
-      {experienceData.map((exp, index) => (
-        <motion.div
-          key={exp.id}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="relative group"
-        >
-          <div className="absolute -left-6 sm:-left-10 top-7 -translate-x-1/2 w-7 h-7 rounded-full bg-white border-4 border-secondary-500 shadow-md group-hover:scale-125 group-hover:border-secondary-600 transition-all duration-200 flex items-center justify-center">
-            <div className="w-1.5 h-1.5 bg-secondary rounded-full"></div>
-          </div>
-
-          <Card
-            isBlurred
-            isHoverable
-            shadow="sm"
-            classNames={{
-              base: 'bg-white/60 glass rounded-3xl border border-white/70 backdrop-blur-2xl hover:border-indigo-200 transition-all duration-300',
-              body: 'p-6 sm:p-7',
-            }}
-          >
-            <CardBody>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <CardBody>
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <Chip
+                size="sm"
+                variant="flat"
+                className="bg-sky-100 text-[11px] font-bold uppercase tracking-wider text-sky-700"
+              >
+                {isEducation ? entry.badge : entry.type}
+              </Chip>
+              {isEducation && (
                 <Chip
                   size="sm"
                   variant="flat"
-                  color="secondary"
-                  className="text-[11px] font-bold uppercase tracking-wider self-start"
+                  className="bg-default-100 text-[11px] font-semibold text-default-600"
                 >
-                  {exp.type}
+                  {entry.status}
                 </Chip>
-                <div className="flex items-center gap-1.5 text-xs font-medium text-default-500">
-                  <Calendar size={14} className="text-indigo-500" />
-                  <span>{exp.period}</span>
-                </div>
+              )}
+            </div>
+
+            <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-sky-700 sm:hidden">
+              <Calendar size={13} />
+              <span>{entry.period}</span>
+            </p>
+
+            <h3 className="text-lg font-bold leading-snug text-foreground sm:text-xl">
+              {isEducation ? entry.institution : entry.role}
+            </h3>
+
+            {isEducation ? (
+              <div className="mt-1 text-sm font-semibold text-default-600">
+                {entry.degree}{" "}
+                <span className="font-normal text-default-500">
+                  — {entry.major}
+                </span>
               </div>
-
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground">{exp.role}</h3>
-              <div className="text-sm font-semibold text-default-600 mt-1">{exp.company}</div>
-
-              <p className="mt-3 text-sm text-default-600 leading-relaxed">{exp.description}</p>
-
-              <div className="mt-5 pt-4 border-t border-divider">
-                <div className="text-xs font-bold uppercase tracking-wider text-default-400 mb-3 flex items-center gap-1.5">
-                  <Terminal size={14} className="text-indigo-500" />
-                  <span>Core Responsibilities & Impact</span>
+            ) : (
+              <>
+                <div className="mt-1 text-sm font-semibold text-default-600">
+                  {entry.company}
                 </div>
-                <ul className="space-y-2">
-                  {exp.achievements.map((item, aIdx) => (
-                    <li
-                      key={aIdx}
-                      className="flex items-start gap-2.5 text-xs sm:text-sm text-default-600 leading-relaxed"
-                    >
-                      <CheckCircle2 size={16} className="text-sky-500 shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </CardBody>
-          </Card>
-        </motion.div>
+                <p className="mt-3 text-sm leading-relaxed text-default-600">
+                  {entry.description}
+                </p>
+                <div className="mt-4 border-t border-divider pt-4">
+                  <div className="mb-3 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-default-400">
+                    <Terminal size={13} className="text-sky-600" />
+                    <span>Responsibilities & Highlights</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {entry.achievements.map((item, achievementIndex) => (
+                      <li
+                        key={achievementIndex}
+                        className="flex items-start gap-2 text-xs leading-relaxed text-default-600 sm:text-sm"
+                      >
+                        <CheckCircle2
+                          size={15}
+                          className="mt-0.5 shrink-0 text-sky-500"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+          </CardBody>
+        </Card>
+      </div>
+
+      <div
+        className={`hidden self-center sm:row-start-1 sm:block ${
+          isCardLeft ? "sm:col-start-3" : "sm:col-start-1"
+        } ${periodPlacement}`}
+      >
+        <div className="inline-flex flex-col gap-1">
+          <span className="text-xs font-bold uppercase tracking-[0.16em] text-default-400">
+            {isEducation ? "Education" : "Experience"}
+          </span>
+          <span className="text-lg font-extrabold leading-tight text-sky-700 lg:text-xl">
+            {entry.period}
+          </span>
+        </div>
+      </div>
+
+      <div className="z-10 col-start-1 row-start-1 flex h-12 w-12 items-center justify-center justify-self-center rounded-xl border border-white/80 bg-gradient-to-br from-sky-500 to-indigo-600 text-lg font-extrabold text-white shadow-lg shadow-sky-500/20 sm:col-start-2 sm:h-14 sm:w-14 sm:text-xl">
+        {String(index + 1).padStart(2, "0")}
+      </div>
+    </motion.div>
+  );
+}
+
+function TimelineList({ entries, kind }) {
+  const chronologicalEntries = [...entries].reverse();
+
+  return (
+    <div className="relative mx-auto max-w-5xl space-y-7 before:absolute before:inset-y-0 before:left-6 before:w-0.5 before:bg-gradient-to-b before:from-sky-400 before:via-blue-400 before:to-indigo-500 sm:space-y-9 sm:before:left-1/2 sm:before:-translate-x-1/2">
+      {chronologicalEntries.map((entry, index) => (
+        <TimelineEntry
+          key={entry.id}
+          entry={entry}
+          index={index}
+          kind={kind}
+        />
       ))}
     </div>
   );
@@ -187,14 +154,15 @@ export default function HomeTimeline() {
   const { activeTab, setActiveTab } = useHomeTimeline();
 
   return (
-    <section id="timeline" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="timeline"
+      className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8"
+    >
+      <div className="mx-auto max-w-7xl">
         <SectionHeader
-          icon={GraduationCap}
-          eyebrow="Credentials & Track Record"
           title="Education &"
           accent="Experience"
-          description="A comprehensive overview of academic milestones, institutional honors, and professional career growth."
+          description="A comprehensive overview of academic milestones, hands-on projects, and professional experience."
         >
           <div className="mt-8 flex justify-center">
             <Tabs
@@ -203,10 +171,12 @@ export default function HomeTimeline() {
               onSelectionChange={setActiveTab}
               radius="lg"
               classNames={{
-                tabList: 'glass-pill border border-white/70 p-1.5 gap-1',
-                tab: 'h-11 px-6',
-                cursor: 'bg-gradient-to-r from-sky-500 to-indigo-600 shadow-lg shadow-sky-500/25',
-                tabContent: 'text-default-600 group-data-[selected=true]:text-white font-semibold',
+                tabList: "glass-pill border border-white/70 p-1.5 gap-1",
+                tab: "h-11 px-6",
+                cursor:
+                  "bg-gradient-to-r from-sky-500 to-indigo-600 shadow-lg shadow-sky-500/25",
+                tabContent:
+                  "text-default-600 group-data-[selected=true]:text-white font-semibold",
               }}
             >
               <Tab
@@ -231,8 +201,12 @@ export default function HomeTimeline() {
           </div>
         </SectionHeader>
 
-        <div className="max-w-4xl mx-auto">
-          {activeTab === 'education' ? <EducationTimeline /> : <ExperienceTimeline />}
+        <div className="mt-10">
+          {activeTab === "education" ? (
+            <TimelineList entries={educationData} kind="education" />
+          ) : (
+            <TimelineList entries={experienceData} kind="experience" />
+          )}
         </div>
       </div>
     </section>

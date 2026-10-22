@@ -17,7 +17,7 @@ import {
   Cpu,
   Database,
   Lock,
-} from 'lucide-react';
+} from "lucide-react";
 
 export const ICON_MAP = {
   Code,
@@ -47,7 +47,7 @@ export const LEVEL_PERCENT = {
 };
 
 export const LEVEL_COLOR = {
-  Expert: 'success',
-  Advanced: 'primary',
-  Intermediate: 'secondary',
+  Expert: "success",
+  Advanced: "primary",
+  Intermediate: "secondary",
 };

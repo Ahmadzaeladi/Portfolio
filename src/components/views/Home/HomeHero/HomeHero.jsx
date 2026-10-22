@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Button, Link as HeroLink } from "@heroui/react";
 import { ArrowRight, Download } from "lucide-react";
 import { personalInfo } from "@/constants/portfolioData";
-import { HOME_STATS } from "../Home.constants";
 import HomeTechMarquee from "../HomeTechMarquee";
 import profilePhoto from "../../../../../images/fotoAhmad.png";
 
