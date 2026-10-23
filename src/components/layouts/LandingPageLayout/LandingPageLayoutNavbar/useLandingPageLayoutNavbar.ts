@@ -27,13 +27,21 @@ export default function useLandingPageLayoutNavbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isActive = (href) => activeSection === href.substring(1);
+  const isActive = (href: string) => activeSection === href.substring(1);
 
-  const handleMenuNavigate = (href) => (e) => {
-    e.preventDefault();
-    setMenuOpen(false);
-    scrollToSection(href);
+  const handleMenuNavigate =
+    (href: string) => (event: { preventDefault: () => void }) => {
+      event.preventDefault();
+      setMenuOpen(false);
+      scrollToSection(href);
+    };
+
+  return {
+    isScrolled,
+    menuOpen,
+    setMenuOpen,
+    activeSection,
+    isActive,
+    handleMenuNavigate,
   };
-
-  return { isScrolled, menuOpen, setMenuOpen, activeSection, isActive, handleMenuNavigate };
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Chip } from '@heroui/react';
 import { TECH_MARQUEE } from '../Home.constants';

@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Button, Link as HeroLink } from "@heroui/react";
 import { ArrowRight, Download } from "lucide-react";

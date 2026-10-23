@@ -1,10 +1,10 @@
-import React from 'react';
 import {
   Button,
   Divider,
+  Image,
   Link as HeroLink,
 } from '@heroui/react';
-import { Terminal, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { personalInfo, navLinks } from '@/constants/portfolioData';
 
 export default function LandingPageLayoutFooter() {
@@ -18,8 +18,12 @@ export default function LandingPageLayoutFooter() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8">
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/25">
-              <Terminal size={18} />
+            <div className="h-10 w-10 overflow-hidden rounded-xl border border-white/70 shadow-md">
+              <Image
+                src={personalInfo.avatar}
+                alt={`${personalInfo.name} logo`}
+                className="h-full w-full object-cover"
+              />
             </div>
             <div>
               <div className="font-bold text-foreground text-lg">{personalInfo.name}</div>

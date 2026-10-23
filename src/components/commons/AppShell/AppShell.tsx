@@ -1,6 +1,6 @@
-import React from "react";
+import type { PropsWithChildren } from "react";
 
-export default function AppShell({ children }) {
+export default function AppShell({ children }: PropsWithChildren) {
   return (
     <div className="relative min-h-screen bg-background text-foreground selection:bg-primary selection:text-white font-sans overflow-x-clip">
       {/* Ambient: blueprint grid + pastel glow blobs */}

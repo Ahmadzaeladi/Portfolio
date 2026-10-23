@@ -1,5 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import type { Key } from 'react';
 import {
   Card,
   CardBody,
@@ -35,7 +35,12 @@ export default function HomeProjects() {
       <Tabs
         aria-label="Project category filter"
         selectedKey={filter}
-        onSelectionChange={setFilter}
+        onSelectionChange={(key: Key) => {
+          const selectedFilter = FILTERS.find(
+            (item) => item.key === String(key)
+          );
+          if (selectedFilter) setFilter(selectedFilter.key);
+        }}
         radius="lg"
         classNames={{
           tabList: 'glass-pill border border-white/70 p-1.5 gap-1 flex-wrap',
@@ -73,10 +78,10 @@ export default function HomeProjects() {
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           icon={Layers}
-          eyebrow="Featured Work"
-          title="Full-Stack &"
-          accent="Web Projects"
-          description="Explore end-to-end web applications, interactive SPAs, backend tools, and responsive UI design systems."
+          eyebrow="Projects from GitHub"
+          title="Selected"
+          accent="Projects"
+          description="A selection of projects from my GitHub repositories, with links to their source code and live websites where available."
         >
           {renderFilterTabs}
         </SectionHeader>
@@ -97,13 +102,28 @@ export default function HomeProjects() {
               }}
             >
               <div className="grid grid-cols-1 md:grid-cols-12">
-                <div className="md:col-span-5 relative min-h-[260px] overflow-hidden bg-gradient-to-tr from-sky-100 to-indigo-100">
-                  <img
-                    src={spotlight.image}
-                    alt={spotlight.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    onError={(e) => handleImgError(e, spotlight.fallbackBg)}
-                  />
+                <div
+                  className={`md:col-span-5 relative min-h-[260px] overflow-hidden ${
+                    spotlight.image
+                      ? 'bg-gradient-to-tr from-sky-100 to-indigo-100'
+                      : `flex items-center justify-center bg-gradient-to-br ${spotlight.fallbackBg}`
+                  }`}
+                >
+                  {spotlight.image ? (
+                    <img
+                      src={spotlight.image}
+                      alt={spotlight.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      onError={(e) => handleImgError(e, spotlight.fallbackBg)}
+                    />
+                  ) : (
+                    <Layers
+                      aria-hidden="true"
+                      size={72}
+                      strokeWidth={1.2}
+                      className="text-slate-700/30"
+                    />
+                  )}
                   <div className="absolute top-4 left-4 flex gap-2">
                     <Chip
                       size="sm"
@@ -117,27 +137,6 @@ export default function HomeProjects() {
                 </div>
 
                 <CardBody className="md:col-span-7 p-7 sm:p-9 flex flex-col justify-center">
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <Chip
-                      size="sm"
-                      variant="flat"
-                      color="warning"
-                      className="text-[11px] font-bold uppercase tracking-wider"
-                      startContent={<ArrowUpRight size={12} />}
-                    >
-                      Featured
-                    </Chip>
-                    {spotlight.stats && (
-                      <Chip
-                        size="sm"
-                        variant="flat"
-                        className="text-[11px] font-semibold bg-success-100 text-success-700"
-                      >
-                        {spotlight.stats}
-                      </Chip>
-                    )}
-                  </div>
-
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight leading-tight">
                     {spotlight.title}
                   </h3>
@@ -174,10 +173,11 @@ export default function HomeProjects() {
                         Live Demo
                       </Button>
                     )}
-                    {spotlight.githubUrl && (
+                    {spotlight.repositories.map((repository) => (
                       <Button
+                        key={repository.url}
                         as={HeroLink}
-                        href={spotlight.githubUrl}
+                        href={repository.url}
                         target="_blank"
                         rel="noreferrer"
                         color="default"
@@ -186,9 +186,9 @@ export default function HomeProjects() {
                         className="font-semibold border-divider"
                         startContent={<Github size={15} />}
                       >
-                        Source Code
+                        {repository.label}
                       </Button>
-                    )}
+                    ))}
                   </div>
                 </CardBody>
               </div>
@@ -213,14 +213,29 @@ export default function HomeProjects() {
                     base: 'bg-white/60 glass rounded-3xl border border-white/70 backdrop-blur-2xl hover:border-sky-200 hover:-translate-y-1 transition-all duration-300 overflow-hidden group h-full',
                   }}
                 >
-                  <div className="relative h-48 w-full overflow-hidden bg-gradient-to-tr from-sky-100 to-indigo-100">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => handleImgError(e, project.fallbackBg)}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/55 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                  <div
+                    className={`relative flex h-48 w-full items-center justify-center overflow-hidden bg-gradient-to-br ${
+                      project.fallbackBg
+                    }`}
+                  >
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => handleImgError(e, project.fallbackBg)}
+                      />
+                    ) : (
+                      <Layers
+                        aria-hidden="true"
+                        size={56}
+                        strokeWidth={1.2}
+                        className="text-slate-700/30"
+                      />
+                    )}
+                    {project.image && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/55 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    )}
 
                     <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
                       <Chip
@@ -231,11 +246,6 @@ export default function HomeProjects() {
                       >
                         {CATEGORY_META[project.category]?.label}
                       </Chip>
-                      {project.stats && (
-                        <span className="text-[11px] font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md bg-white/85 text-slate-800 border border-white/60 shadow-sm">
-                          {project.stats}
-                        </span>
-                      )}
                     </div>
                   </div>
 
@@ -275,9 +285,10 @@ export default function HomeProjects() {
                           <ExternalLink size={14} />
                         </HeroLink>
                       )}
-                      {project.githubUrl && (
+                      {project.repositories.map((repository) => (
                         <HeroLink
-                          href={project.githubUrl}
+                          key={repository.url}
+                          href={repository.url}
                           target="_blank"
                           rel="noreferrer"
                           color="foreground"
@@ -285,9 +296,9 @@ export default function HomeProjects() {
                           className="flex items-center gap-1.5 text-xs font-semibold hover:text-primary"
                         >
                           <Github size={14} />
-                          <span>Source Code</span>
+                          <span>{repository.label}</span>
                         </HeroLink>
-                      )}
+                      ))}
                     </div>
                     <ArrowUpRight size={18} className="text-default-300 group-hover:text-primary-400 transition-colors" />
                   </CardFooter>

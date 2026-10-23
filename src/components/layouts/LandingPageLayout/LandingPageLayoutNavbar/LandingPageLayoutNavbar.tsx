@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Navbar as HeroUINavbar,
   NavbarBrand,
@@ -79,7 +78,7 @@ export default function LandingPageLayoutNavbar() {
             as={HeroLink}
             href="https://wa.me/6281234567890"
             target="_blank"
-            onPress={handleMenuNavigate("https://wa.me/6289607237171")}
+            onPress={() => setMenuOpen(false)}
             color="success"
             radius="full"
             size="sm"
@@ -118,7 +117,7 @@ export default function LandingPageLayoutNavbar() {
             as={HeroLink}
             href="https://wa.me/6289607237171"
             target="_blank"
-            onPress={handleMenuNavigate("https://wa.me/6289607237171")}
+            onPress={() => setMenuOpen(false)}
             color="success"
             variant="shadow"
             radius="full"

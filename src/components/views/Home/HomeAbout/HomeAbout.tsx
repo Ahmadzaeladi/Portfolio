@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardBody, Progress, Tabs, Tab } from "@heroui/react";
 import { MapPin, Code } from "lucide-react";
@@ -135,7 +134,7 @@ export default function HomeAbout() {
               <Tabs
                 aria-label="Skill categories"
                 selectedKey={activeSkillTab}
-                onSelectionChange={setActiveSkillTab}
+                onSelectionChange={(key) => setActiveSkillTab(String(key))}
                 variant="light"
                 radius="lg"
                 classNames={{

@@ -1,4 +1,74 @@
-export const personalInfo = {
+export type SkillLevel = "Expert" | "Advanced" | "Intermediate";
+export type ProjectCategory = "web" | "fullstack";
+
+export interface PersonalInfo {
+  name: string;
+  role: string;
+  tagline: string;
+  description: string;
+  location: string;
+  email: string;
+  phone: string;
+  status: string;
+  avatar: string;
+  resumeUrl: string;
+  socials: Array<{
+    name: string;
+    url: string;
+    icon: string;
+    color: string;
+  }>;
+}
+
+export interface Skill {
+  name: string;
+  level: SkillLevel;
+  icon: string;
+}
+
+export interface SkillCategory {
+  category: string;
+  icon: string;
+  skills: Skill[];
+}
+
+export interface EducationEntry {
+  id: string;
+  institution: string;
+  degree: string;
+  major: string;
+  period: string;
+  location: string;
+  status: string;
+  badge: string;
+}
+
+export interface ExperienceEntry {
+  id: string;
+  role: string;
+  company: string;
+  period: string;
+  type: string;
+  description: string;
+  achievements: string[];
+}
+
+export interface PortfolioProject {
+  id: string;
+  title: string;
+  category: ProjectCategory;
+  description: string;
+  image?: string;
+  fallbackBg: string;
+  tags: string[];
+  liveUrl?: string;
+  repositories: Array<{
+    label: string;
+    url: string;
+  }>;
+}
+
+export const personalInfo: PersonalInfo = {
   name: "Ahmad Zaeladi",
   role: "Full-Stack Web Developer",
   tagline:
@@ -74,7 +144,7 @@ export const developerMilestones = [
   },
 ];
 
-export const skillCategories = [
+export const skillCategories: SkillCategory[] = [
   {
     category: "Frontend & UI Engineering",
     icon: "Layout",
@@ -112,7 +182,7 @@ export const skillCategories = [
   },
 ];
 
-export const educationData = [
+export const educationData: EducationEntry[] = [
   {
     id: "unpam",
     institution: "Universitas Pamulang (UNPAM)",
@@ -147,7 +217,7 @@ export const educationData = [
   },
 ];
 
-export const experienceData = [
+export const experienceData: ExperienceEntry[] = [
   {
     id: "exp-1",
     role: "Academic & Personal Projects",
@@ -178,104 +248,127 @@ export const experienceData = [
   },
 ];
 
-export const projectsData = [
+export const projectsData: PortfolioProject[] = [
   {
-    id: "proj-1",
-    title: "Dunkin' Quick-Bite Restaurant Platform",
-    category: "web",
+    id: "event-platform",
+    title: "Event Management Platform",
+    category: "fullstack",
     description:
-      "A vibrant, responsive full-stack web platform designed for a fast-food brand. Features dynamic product catalogs, menu filtering for Donuts & Coffee, and an intuitive ordering user flow.",
-    image: "images/6dnt.webp",
-    fallbackBg: "from-amber-400/20 to-orange-500/20",
-    tags: ["JavaScript", "HTML5", "CSS3", "Responsive UI", "Vercel"],
-    liveUrl: "https://kedai-donat.vercel.app/",
-    githubUrl: "https://github.com/Ahmadzaeladi/kedai-donat",
-    featured: true,
-    stats: "Live on Vercel",
+      "A web application for event listings with separate admin and member areas, event management, member transactions, and payment status pages.",
+    fallbackBg: "from-violet-200/70 to-sky-100",
+    tags: ["Next.js", "TypeScript", "Express", "MongoDB", "JWT"],
+    liveUrl: "https://front-end-acara-sable-phi.vercel.app",
+    repositories: [
+      {
+        label: "Frontend",
+        url: "https://github.com/Ahmadzaeladi/front-end-acara",
+      },
+      {
+        label: "Backend API",
+        url: "https://github.com/Ahmadzaeladi/beck-end-acara",
+      },
+    ],
   },
   {
-    id: "proj-2",
-    title: "Dunia Coffee Artisan E-Commerce Web App",
+    id: "finance-management",
+    title: "Finance Management App",
+    category: "fullstack",
+    description:
+      "A finance dashboard with balance, transaction, calendar, statistics, and profile views. Its API supports transactions, planned expenses, categories, and weekly and monthly reports.",
+    fallbackBg: "from-emerald-200/70 to-teal-100",
+    tags: ["Next.js", "Chart.js", "Express", "MySQL"],
+    repositories: [
+      {
+        label: "Frontend",
+        url: "https://github.com/Ahmadzaeladi/fe-kelola-keuangan",
+      },
+      {
+        label: "Backend API",
+        url: "https://github.com/Ahmadzaeladi/be-kelola-keuangan",
+      },
+    ],
+  },
+  {
+    id: "pra-kerja-profile",
+    title: "PT Pra Kerja Nusantara Company Profile",
     category: "web",
     description:
-      "A modern coffee storefront web app featuring artisanal brews, origin information, bean flavor profiles, cart interaction, and a sleek glassmorphic product showcase.",
+      "A company profile website for PT Pra Kerja Nusantara, presenting its outsourcing and staffing services.",
+    fallbackBg: "from-sky-200/70 to-blue-100",
+    tags: ["HTML", "CSS", "JavaScript"],
+    liveUrl: "https://profileprakerjanusantara.vercel.app",
+    repositories: [
+      {
+        label: "Source Code",
+        url: "https://github.com/Ahmadzaeladi/profileprakerjanusantara",
+      },
+    ],
+  },
+  {
+    id: "pra-kerja-cms",
+    title: "PT Pra Kerja Nusantara CMS Dashboard",
+    category: "web",
+    description:
+      "A single-page CMS dashboard with views for an overview, hero content, team information, and visual archives.",
+    fallbackBg: "from-indigo-200/70 to-violet-100",
+    tags: ["HTML", "CSS", "JavaScript"],
+    liveUrl: "https://fe-cms-pkn.vercel.app",
+    repositories: [
+      {
+        label: "Source Code",
+        url: "https://github.com/Ahmadzaeladi/fe-cms-pkn",
+      },
+    ],
+  },
+  {
+    id: "mts-an-nashr",
+    title: "MTs An-Nashr School Website",
+    category: "web",
+    description:
+      "A school profile website with sections for the school, programs, facilities, and testimonials.",
+    fallbackBg: "from-amber-200/70 to-orange-100",
+    tags: ["HTML", "CSS", "JavaScript", "Tailwind CSS"],
+    liveUrl: "https://mtsan-nasr.vercel.app",
+    repositories: [
+      {
+        label: "Source Code",
+        url: "https://github.com/Ahmadzaeladi/LP-MTS",
+      },
+    ],
+  },
+  {
+    id: "kedai-coffee",
+    title: "JCoffee Website",
+    category: "web",
+    description:
+      "A coffee shop website with menu and product sections.",
     image: "images/cafe latte.jpg",
     fallbackBg: "from-stone-500/20 to-amber-700/20",
-    tags: ["React", "Tailwind CSS", "UI/UX", "Vercel"],
+    tags: ["HTML", "CSS", "JavaScript"],
     liveUrl: "https://kedaicoffee-six.vercel.app/",
-    githubUrl: "https://github.com/Ahmadzaeladi/duniacoffee",
-    featured: true,
-    stats: "Live on Vercel",
+    repositories: [
+      {
+        label: "Source Code",
+        url: "https://github.com/Ahmadzaeladi/kedaicoffee",
+      },
+    ],
   },
   {
-    id: "proj-3",
-    title: "Modern Glassmorphism Portfolio SPA",
+    id: "kedai-donat",
+    title: "Dunkin' Indonesia Website",
     category: "web",
     description:
-      "A state-of-the-art personal portfolio web application built with React, Tailwind CSS, and Framer Motion featuring soft pastel hues, glowing ambient blobs, and fluid scroll interactions.",
-    image: "images/portfolio1.jpg",
-    fallbackBg: "from-sky-400/20 to-blue-600/20",
-    tags: ["React 18", "Tailwind CSS", "Framer Motion", "Vite", "SPA"],
-    liveUrl: "#home",
-    githubUrl: "https://github.com/Ahmadzaeladi/Portfolio",
-    featured: true,
-    stats: "Production Ready",
-  },
-  {
-    id: "proj-4",
-    title: "DevFlow: Full-Stack Developer Dashboard & Workspace",
-    category: "backend",
-    description:
-      "A productivity web app for developers to organize code snippets, track daily coding goals, preview markdown documentation, and manage sprint development tasks.",
-    image: "images/developer2.png",
-    fallbackBg: "from-indigo-400/20 to-purple-600/20",
-    tags: ["React", "Node.js", "Express", "Tailwind CSS", "REST API"],
-    liveUrl: "https://github.com/Ahmadzaeladi",
-    githubUrl: "https://github.com/Ahmadzaeladi",
-    featured: false,
-    stats: "Open Source",
-  },
-  {
-    id: "proj-5",
-    title: "Modern Glassmorphic React UI Design System",
-    category: "ui",
-    description:
-      "A comprehensive reusable component library and UI kit featuring modern pastel glassmorphism styling, accessible keyboard navigation, and responsive typography tokens.",
-    image: "images/foto.png",
-    fallbackBg: "from-teal-400/20 to-sky-500/20",
-    tags: ["React", "Figma", "Tailwind CSS", "Design Tokens"],
-    liveUrl: "https://github.com/Ahmadzaeladi",
-    githubUrl: "https://github.com/Ahmadzaeladi",
-    featured: true,
-    stats: "Component Kit",
-  },
-  {
-    id: "proj-6",
-    title: "Interactive Full-Stack Code Playground",
-    category: "web",
-    description:
-      "An interactive web app demonstrating React hooks, Framer Motion spring physics, micro-interactions, and real-time state management with instant visual feedback.",
-    image: "images/programmer.png",
-    fallbackBg: "from-blue-400/20 to-indigo-500/20",
-    tags: ["React", "Framer Motion", "Tailwind CSS", "JavaScript"],
-    liveUrl: "https://github.com/Ahmadzaeladi",
-    githubUrl: "https://github.com/Ahmadzaeladi",
-    featured: true,
-    stats: "Interactive Demo",
-  },
-  {
-    id: "proj-7",
-    title: "TaskMaster: Full-Stack Agile Kanban System",
-    category: "backend",
-    description:
-      "A responsive Kanban web application with drag-and-drop task management, priority tags, and clean glassmorphism UI for tracking software development workflows.",
-    image: "images/foto3.png",
-    fallbackBg: "from-purple-400/20 to-violet-500/20",
-    tags: ["React", "Node.js", "Tailwind CSS", "State Management"],
-    liveUrl: "https://github.com/Ahmadzaeladi",
-    githubUrl: "https://github.com/Ahmadzaeladi",
-    featured: false,
-    stats: "Web App",
+      "A Dunkin' Indonesia-themed website with menu navigation and donut and beverage sections.",
+    image: "images/6dnt.webp",
+    fallbackBg: "from-amber-400/20 to-orange-500/20",
+    tags: ["HTML", "CSS", "JavaScript"],
+    liveUrl: "https://kedai-donat.vercel.app",
+    repositories: [
+      {
+        label: "Source Code",
+        url: "https://github.com/Ahmadzaeladi/KedaiDonat",
+      },
+    ],
   },
 ];
 
