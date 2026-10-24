@@ -253,6 +253,7 @@ export const projectsData: PortfolioProject[] = [
     id: "event-platform",
     title: "Event Management Platform",
     category: "fullstack",
+    image: "images/login.svg",
     description:
       "A web application for event listings with separate admin and member areas, event management, member transactions, and payment status pages.",
     fallbackBg: "from-violet-200/70 to-sky-100",
@@ -340,8 +341,7 @@ export const projectsData: PortfolioProject[] = [
     id: "kedai-coffee",
     title: "JCoffee Website",
     category: "web",
-    description:
-      "A coffee shop website with menu and product sections.",
+    description: "A coffee shop website with menu and product sections.",
     image: "images/cafe latte.jpg",
     fallbackBg: "from-stone-500/20 to-amber-700/20",
     tags: ["HTML", "CSS", "JavaScript"],

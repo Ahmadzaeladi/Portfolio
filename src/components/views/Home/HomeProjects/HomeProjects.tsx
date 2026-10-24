@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import type { Key } from 'react';
+import { motion } from "framer-motion";
+import type { Key } from "react";
 import {
   Card,
   CardBody,
@@ -9,26 +9,16 @@ import {
   Link as HeroLink,
   Tabs,
   Tab,
-} from '@heroui/react';
-import {
-  ExternalLink,
-  Github,
-  Layers,
-  ArrowUpRight,
-} from 'lucide-react';
-import { projectsData } from '@/constants/portfolioData';
-import SectionHeader from '@/components/ui/SectionHeader';
-import { FILTERS, CATEGORY_META } from './HomeProjects.constants';
-import useHomeProjects from './useHomeProjects';
+} from "@heroui/react";
+import { ExternalLink, Github, Layers, ArrowUpRight } from "lucide-react";
+import { projectsData } from "@/constants/portfolioData";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { FILTERS, CATEGORY_META } from "./HomeProjects.constants";
+import useHomeProjects from "./useHomeProjects";
 
 export default function HomeProjects() {
-  const {
-    filter,
-    setFilter,
-    spotlight,
-    gridProjects,
-    handleImgError,
-  } = useHomeProjects();
+  const { filter, setFilter, spotlight, gridProjects, handleImgError } =
+    useHomeProjects();
 
   const renderFilterTabs = (
     <div className="mt-8 flex justify-center">
@@ -37,21 +27,23 @@ export default function HomeProjects() {
         selectedKey={filter}
         onSelectionChange={(key: Key) => {
           const selectedFilter = FILTERS.find(
-            (item) => item.key === String(key)
+            (item) => item.key === String(key),
           );
           if (selectedFilter) setFilter(selectedFilter.key);
         }}
         radius="lg"
         classNames={{
-          tabList: 'glass-pill border border-white/70 p-1.5 gap-1 flex-wrap',
-          tab: 'h-10 px-4',
-          cursor: 'bg-gradient-to-r from-sky-500 to-indigo-600 shadow-lg shadow-sky-500/25',
-          tabContent: 'text-default-600 group-data-[selected=true]:text-white font-semibold',
+          tabList: "glass-pill border border-white/70 p-1.5 gap-1 flex-wrap",
+          tab: "h-10 px-4",
+          cursor:
+            "bg-gradient-to-r from-sky-500 to-indigo-600 shadow-lg shadow-sky-500/25",
+          tabContent:
+            "text-default-600 group-data-[selected=true]:text-white font-semibold",
         }}
       >
         {FILTERS.map(({ key, name, icon: FilterIcon }) => {
           const count =
-            key === 'all'
+            key === "all"
               ? projectsData.length
               : projectsData.filter((p) => p.category === key).length;
           return (
@@ -74,11 +66,12 @@ export default function HomeProjects() {
   );
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section
+      id="projects"
+      className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         <SectionHeader
-          icon={Layers}
-          eyebrow="Projects from GitHub"
           title="Selected"
           accent="Projects"
           description="A selection of projects from my GitHub repositories, with links to their source code and live websites where available."
@@ -98,14 +91,14 @@ export default function HomeProjects() {
               isBlurred
               shadow="sm"
               classNames={{
-                base: 'bg-white/60 glass rounded-3xl border border-white/70 backdrop-blur-2xl mb-8 overflow-hidden group',
+                base: "bg-white/60 glass rounded-3xl border border-white/70 backdrop-blur-2xl mb-8 overflow-hidden group",
               }}
             >
               <div className="grid grid-cols-1 md:grid-cols-12">
                 <div
                   className={`md:col-span-5 relative min-h-[260px] overflow-hidden ${
                     spotlight.image
-                      ? 'bg-gradient-to-tr from-sky-100 to-indigo-100'
+                      ? "bg-gradient-to-tr from-sky-100 to-indigo-100"
                       : `flex items-center justify-center bg-gradient-to-br ${spotlight.fallbackBg}`
                   }`}
                 >
@@ -128,7 +121,9 @@ export default function HomeProjects() {
                     <Chip
                       size="sm"
                       variant="solid"
-                      color={CATEGORY_META[spotlight.category]?.color || 'primary'}
+                      color={
+                        CATEGORY_META[spotlight.category]?.color || "primary"
+                      }
                       className="text-[11px] font-bold uppercase tracking-wider backdrop-blur-md"
                     >
                       {CATEGORY_META[spotlight.category]?.label}
@@ -162,7 +157,11 @@ export default function HomeProjects() {
                       <Button
                         as={HeroLink}
                         href={spotlight.liveUrl}
-                        target={spotlight.liveUrl.startsWith('http') ? '_blank' : '_self'}
+                        target={
+                          spotlight.liveUrl.startsWith("http")
+                            ? "_blank"
+                            : "_self"
+                        }
                         rel="noreferrer"
                         color="primary"
                         variant="shadow"
@@ -210,7 +209,7 @@ export default function HomeProjects() {
                   isHoverable
                   shadow="sm"
                   classNames={{
-                    base: 'bg-white/60 glass rounded-3xl border border-white/70 backdrop-blur-2xl hover:border-sky-200 hover:-translate-y-1 transition-all duration-300 overflow-hidden group h-full',
+                    base: "bg-white/60 glass rounded-3xl border border-white/70 backdrop-blur-2xl hover:border-sky-200 hover:-translate-y-1 transition-all duration-300 overflow-hidden group h-full",
                   }}
                 >
                   <div
@@ -241,7 +240,9 @@ export default function HomeProjects() {
                       <Chip
                         size="sm"
                         variant="solid"
-                        color={CATEGORY_META[project.category]?.color || 'primary'}
+                        color={
+                          CATEGORY_META[project.category]?.color || "primary"
+                        }
                         className="text-[11px] font-bold uppercase tracking-wider backdrop-blur-md"
                       >
                         {CATEGORY_META[project.category]?.label}
@@ -275,7 +276,11 @@ export default function HomeProjects() {
                       {project.liveUrl && (
                         <HeroLink
                           href={project.liveUrl}
-                          target={project.liveUrl.startsWith('http') ? '_blank' : '_self'}
+                          target={
+                            project.liveUrl.startsWith("http")
+                              ? "_blank"
+                              : "_self"
+                          }
                           rel="noreferrer"
                           color="primary"
                           size="sm"
@@ -300,7 +305,10 @@ export default function HomeProjects() {
                         </HeroLink>
                       ))}
                     </div>
-                    <ArrowUpRight size={18} className="text-default-300 group-hover:text-primary-400 transition-colors" />
+                    <ArrowUpRight
+                      size={18}
+                      className="text-default-300 group-hover:text-primary-400 transition-colors"
+                    />
                   </CardFooter>
                 </Card>
               </motion.div>
